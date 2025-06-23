@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emoji Theme</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to top right, #fff0f5, #e0f7fa);
+  font-family: sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.emoji-border {
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.emoji-border button {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.emoji-border button:hover {
+  transform: scale(1.2);
+}
+
+.top {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left {
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+}
+
+.home-link {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  z-index: 20;
+}
+
+.home-link h3 a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.home-link h3 a:hover {
+  color: darkred;
+}
+
+.right {
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+}
+
+.center-content {
+  width: 950px;
+  height: 500px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 600px) {
+  .emoji-border button {
+    font-size: 1.2rem;
+    padding: 0.4rem;
+  }
+
+  .center-content {
+    width: 90%;
+    height: 70%;
+  }
+}
+
+  </style>
+</head>
+<body>
+  
+   <form method="post" action="emoji">
+        {% csrf_token %}
+        <div class="home-link">
+  <h3><u><a href="/home1">Back</a></u></h3>
+</div>
+  <div class="emoji-border top">
+    <button name="b1">🛍️</button>
+    <button name="b2">✌️</button>
+    <button name="b3">🙁</button>
+  </div>
+
+  <div class="emoji-border left">
+    <button name="b4">😛</button>
+    <button name="b5">☺️</button>
+  </div>
+
+  <div class="emoji-border right">
+    <button name="b6">😁</button>
+    <button name="b7">🏋️‍♂️</button>
+  </div>
+
+  <div class="emoji-border bottom">
+    <button name="b8">😀</button>
+    <button name="b9">🤭</button>
+    <button name="b10">🤗</button>
+  </div>
+ <h1 style="
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color:  #f70559;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-top: 20px;
+    text-align: center;
+    letter-spacing: 1.5px;
+">
+    {{ content }}
+</h1>
+  
+   </form>
+   {% block home %} 
+{% endblock %}
+</body>
+</html>
