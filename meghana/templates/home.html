@@ -8,65 +8,60 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
+      padding: 0.3rem 0.3rem;
       font-family: 'Roboto', sans-serif;
       background: linear-gradient(135deg, #ffe6f0, #ffe0cc);
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       overflow: hidden;
       position: relative;
-    }
-
-    .container {
       text-align: center;
-      background: white;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-      max-width: 500px;
-      width: 90%;
-      position: relative;
-      z-index: 2;
-      animation: fadeInUp 1.5s ease;
+      color: #444;
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.5em;
-  
+      font-size: 1.5rem;
+      margin-bottom: 0.05rem;
       text-shadow: 6px 6px 8px rgba(6, 124, 243, 0.5);
-      margin-bottom: 0.7rem;
+      z-index: 1.5;
     }
 
     .profile-img {
       width: 100%;
       max-width: 300px;
-      height: 340px;
+      height: 320px;
       border-radius: 20px;
       margin: 1rem auto;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
       animation: popIn 1.2s ease;
+      object-fit: cover;
+      z-index: 2;
     }
 
     .message {
-      font-size: 1.1em;
-      color: #444;
-      margin: 1.5rem 0;
+      font-size: 1rem;
+      margin: 1rem 0;
       animation: fadeIn 2s ease;
+      z-index: 2;
+      max-width: 500px;
+      padding: 0 0.5rem;
     }
 
     .memories-btn {
-      padding: 0.8rem 2rem;
+      padding: 0.5rem 1.5rem;
       background-color: #ff66a3;
       color: white;
-      font-size: 1em;
+      font-size: 1rem;
       border: none;
-      border-radius: 25px;
+      border-radius: 20px;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255, 102, 163, 0.5);
+      box-shadow: 0 4px 10px rgba(255, 102, 163, 0.5);
+      z-index: 2;
     }
 
     .memories-btn:hover {
@@ -77,8 +72,9 @@
 
     /* Balloons */
     .balloons {
-      position: absolute;
+      position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       overflow: hidden;
@@ -135,7 +131,7 @@
 
     /* Confetti */
     .confetti {
-      position: absolute;
+      position: fixed;
       width: 8px;
       height: 8px;
       background-color: pink;
@@ -143,6 +139,7 @@
       border-radius: 50%;
       opacity: 0.7;
       animation: confettiFall 6s linear infinite;
+      z-index: 1;
     }
 
     .confetti:nth-child(4) { left: 10%; animation-delay: 0s; background: #ff69b4; }
@@ -172,10 +169,43 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
+    /* Responsive tweaks */
     @media (max-width: 600px) {
-      h1 { font-size: 2em; }
-      .message { font-size: 1em; }
-      .memories-btn { padding: 0.6rem 1.5rem; }
+      h1 {
+        font-size: 2.5em;
+      }
+      .message {
+        font-size: 1em;
+      }
+      .memories-btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 1em;
+      }
+
+      /* Smaller balloons */
+      .balloon {
+        width: 30px;
+        height: 45px;
+        animation-duration: 8s;
+      }
+
+      .balloon1 { left: 10%; }
+      .balloon2 { left: 35%; }
+      .balloon3 { left: 60%; }
+
+      @keyframes floatUp {
+        0% { transform: translateY(0) rotate(0deg); }
+        25% { transform: translateY(-150px) rotate(15deg); }
+        50% { transform: translateY(-300px) rotate(-15deg); }
+        75% { transform: translateY(-450px) rotate(15deg); }
+        100% { transform: translateY(-600px) rotate(-15deg); }
+      }
+
+      /* Smaller confetti */
+      .confetti {
+        width: 5px;
+        height: 5px;
+      }
     }
   </style>
 </head>
@@ -194,17 +224,15 @@
     <div class="confetti"></div>
   </div>
 
-  <div class="container">
-    <form method="post" action="view">
-      {% csrf_token %}
-      <h1>Happy Birthday Meghana 🎉</h1>
-      <img src="{% static '/1000028116.jpg' %}" alt="Meghana" class="profile-img" />
-      <p class="message">
-        Wishing you all the joy and happiness in the world on your special day.
-        May your smile shine as bright as the stars! ✨
-      </p>
-      <button class="memories-btn">Memories</button>
-    </form>
-  </div>
+  <form method="post" action="view">
+    {% csrf_token %}
+    <h1>Happy Birthday Meghana 🎉</h1>
+    <img src="{% static '/1000028116.jpg' %}" alt="Meghana" class="profile-img" />
+    <p class="message">
+      Wishing you all the joy and happiness in the world on your special day.
+      May your smile shine as bright as the stars!✨
+    </p>
+    <button class="memories-btn">Memories</button>
+  </form>
 </body>
 </html>
