@@ -6,7 +6,7 @@ def home(request):
     return render(request,'home.html')
 
 def view(request):
-    return render(request,'emoji.html',{'content':"Feeling Emoji-tional? Select Emoji!"})
+    return render(request,'emoji.html',{'content':"Feeling Emoji-tional?",'content1':"Select Emoji!"})
 
 def emoji(request):
     if 'b1' in request.POST:
