@@ -20,8 +20,8 @@
       font-family: sans-serif;
       position: relative;
       overflow-x: hidden;
-      overflow-y: auto; /* allow vertical scrolling on small screens */
-       /* to avoid bottom buttons cutoff */
+      overflow-y: auto;
+      padding-bottom: 100px; /* Space for bottom buttons */
     }
 
     .emoji-border {
@@ -47,26 +47,28 @@
     }
 
     .top {
-      top: 10px;
+      top: 150px;
       left: 50%;
       transform: translateX(-50%);
     }
 
     .bottom {
-      bottom: 100px;
+      bottom: 250px; /* Moved higher from 100px */
       left: 50%;
       transform: translateX(-50%);
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .left {
-      left: 60px;
+      left: 180px;
       top: 40%;
       transform: translateY(-50%);
       flex-direction: column;
     }
 
     .right {
-      right: 60px;
+      right: 180px;
       top: 40%;
       transform: translateY(-50%);
       flex-direction: column;
@@ -99,6 +101,17 @@
       z-index: 1;
     }
 
+    h1 {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #f70559;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 90px;
+      text-align: center;
+      letter-spacing: 1.5px;
+    }
+
     /* Responsive Tweaks */
     @media (max-width: 600px) {
       .emoji-border button {
@@ -108,7 +121,16 @@
 
       .center-content {
         width: 90%;
-        height: 70%;
+        height: auto;
+        min-height: 300px;
+      }
+
+      .bottom {
+        bottom: 20px; /* Even higher on small screens */
+      }
+
+      body {
+        padding-bottom: 120px; /* More breathing room for bottom buttons */
       }
     }
   </style>
@@ -142,20 +164,10 @@
       <button name="b10">🤗</button>
     </div>
 
-    <h1 style="
-      font-family: 'Segoe UI', Arial, sans-serif;
-      font-size: 1.7rem;
-      font-weight: bold;
-      color:  #f70559;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-      margin-bottom: 90px;
-      text-align: center;
-      letter-spacing: 1.5px;
-    ">
-      {{ content }}
-    </h1>
+    <h1>{{ content }}</h1>
   </form>
-  {% block home %} 
+
+  {% block home %}
   {% endblock %}
 </body>
 </html>
